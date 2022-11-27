@@ -31,23 +31,13 @@ public class HomeworkOverviewPage : ContentPage
             Button button = new Button { Text = "Back", FontSize = 18, HorizontalOptions = LayoutOptions.Fill, VerticalOptions = LayoutOptions.Fill, BackgroundColor = Colors.LightGray, TextColor = Colors.Black };
             button.Clicked += async (sender, args) =>
             {
-                await Navigation.PushModalAsync(new MainMenue());
+                await Navigation.PushModalAsync(new MainMenue(getHomeworks));
                 Ptimer.Dispose();
             };
 
-            Button add = new Button
-            {
-                Text = "Add",
-                HorizontalOptions = LayoutOptions.Fill,
-                VerticalOptions = LayoutOptions.Fill,
-                BackgroundColor = Colors.LightGray,
-                TextColor = Colors.Black
-            };
-            add.Clicked += async (sender, args) =>
-            {
-                await Add();
-                update();
-            };
+            Label label = new Label { Text = "Hausaufgaben", VerticalOptions = LayoutOptions.Center, FontSize = 30 };
+
+
             Label non = new Label() { Text = "" };
 
             Grid grid = new Grid
@@ -56,7 +46,7 @@ public class HomeworkOverviewPage : ContentPage
                 {
                     new ColumnDefinition{Width = new GridLength(30, GridUnitType.Star) },
                     new ColumnDefinition{Width = new GridLength(10, GridUnitType.Star) },
-                    new ColumnDefinition{Width = new GridLength(60, GridUnitType.Star) }
+                    new ColumnDefinition{Width = new GridLength(70, GridUnitType.Star) }
                 },
                 RowDefinitions =
                 {
@@ -71,65 +61,14 @@ public class HomeworkOverviewPage : ContentPage
                 BackgroundColor = Colors.LightGray,
                 Content = button
             };
-            Frame frame2 = new Frame
-            {
-                BorderColor = Colors.Black,
-                Padding = new Thickness(5),
-                BackgroundColor = Colors.LightGray,
 
-                Content = add
-            };
 
 
             grid.Add(frame, 0, 0);
-            grid.Add(frame2, 2, 0);
+            grid.Add(label, 2, 0);
             grid.Add(non, 0, 1);
             vs.Add(grid);
 
-            /* Nicht gemergte Änderung aus Projekt "Homeworkapp (net6.0-android)"
-            Vor:
-                    }
-
-
-
-                    //Homework
-            Nach:
-                    }
-
-
-
-                    //Homework
-            */
-
-            /* Nicht gemergte Änderung aus Projekt "Homeworkapp (net6.0-ios)"
-            Vor:
-                    }
-
-
-
-                    //Homework
-            Nach:
-                    }
-
-
-
-                    //Homework
-            */
-
-            /* Nicht gemergte Änderung aus Projekt "Homeworkapp (net6.0-maccatalyst)"
-            Vor:
-                    }
-
-
-
-                    //Homework
-            Nach:
-                    }
-
-
-
-                    //Homework
-            */
         }
 
 
@@ -176,8 +115,5 @@ public class HomeworkOverviewPage : ContentPage
 
     }
 
-    async Task Add()
-    {
-        getHomeworks.add();
-    }
+
 }

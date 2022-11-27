@@ -35,7 +35,7 @@ public class HomeworkPage : ContentPage
             };
 
             //delete
-            ImageButton delete = new ImageButton { Source = "delete.png", VerticalOptions = LayoutOptions.CenterAndExpand, HorizontalOptions = LayoutOptions.CenterAndExpand, MaximumHeightRequest = 50 };
+            ImageButton delete = new ImageButton { Source = "delete.png", VerticalOptions = LayoutOptions.Center, HorizontalOptions = LayoutOptions.Center, MaximumHeightRequest = 50 };
             delete.Clicked += async (sender, args) =>
             {
                 getHomeworks.delete(homework);
@@ -43,7 +43,7 @@ public class HomeworkPage : ContentPage
             };
 
             //titel
-            Label label = new Label() { TextColor = Colors.Black, Text = homework.Name, FontSize = 40, VerticalOptions = LayoutOptions.Center };
+            Label label = new Label() { Text = homework.Name, FontSize = 40, VerticalOptions = LayoutOptions.Center };
 
             Grid grid = new Grid
             {
@@ -79,16 +79,19 @@ public class HomeworkPage : ContentPage
 
         //information
         {
-            Label subjectTitle = new Label() { Text = "\nSubject:", FontSize = 30, HorizontalOptions = LayoutOptions.Center };
-            Label subject = new Label() { Text = homework.Subject, FontSize = 25, HorizontalOptions = LayoutOptions.Center };
-            Label descriptionTitle = new Label() { Text = "\nDescription:", FontSize = 30, HorizontalOptions = LayoutOptions.Center };
-            Label description = new Label() { Text = homework.Description, FontSize = 25, HorizontalOptions = LayoutOptions.Center };
+            Label subjectTitle = new Label() { Text = "\nSubject:", FontSize = 30, HorizontalOptions = LayoutOptions.Start };
+            Label subject = new Label() { Text = homework.Subject, FontSize = 25, HorizontalOptions = LayoutOptions.Start };
+            if (!string.IsNullOrEmpty(homework.Description))
+            {
+                Label descriptionTitle = new Label() { Text = "\nDescription:", FontSize = 30, HorizontalOptions = LayoutOptions.Start };
+                Label description = new Label() { Text = homework.Description, FontSize = 25, HorizontalOptions = LayoutOptions.Start };
 
-            views.Add(subjectTitle);
-            views.Add(subject);
-            views.Add(descriptionTitle);
-            views.Add(description);
+                views.Add(subjectTitle);
+                views.Add(subject);
+                views.Add(descriptionTitle);
+                views.Add(description);
+            }
+            Content = views;
         }
-        Content = views;
     }
 }

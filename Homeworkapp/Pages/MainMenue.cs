@@ -2,33 +2,19 @@ namespace Homeworkapp;
 
 public class MainMenue : ContentPage
 {
-	public MainMenue()
+	public MainMenue(GetHomeworks get)
 	{
-		Grid grid = new Grid()
-		{
-			RowDefinitions =
-			{
-				new RowDefinition{Height=new GridLength(25,GridUnitType.Star)},
-				new RowDefinition{Height=new GridLength(10,GridUnitType.Star)},
-                new RowDefinition{Height=new GridLength(5,GridUnitType.Star)},
-                new RowDefinition{Height=new GridLength(10,GridUnitType.Star)},
-				new RowDefinition{Height=new GridLength(55,GridUnitType.Star)}
-			},
-			ColumnDefinitions =
-			{
-				new ColumnDefinition{Width=new GridLength(10,GridUnitType.Star)},
-				new ColumnDefinition{Width=new GridLength(80,GridUnitType.Star)},
-				new ColumnDefinition{Width=new GridLength(10,GridUnitType.Star)}
-			}
-
-		};
+		VerticalStackLayout views = new VerticalStackLayout() { Margin = 10, };
 
 		Button add = new Button() { Text = "(Add)", FontSize = 30, HorizontalOptions = LayoutOptions.Fill, VerticalOptions = LayoutOptions.Fill, BackgroundColor = Colors.LightGray, TextColor = Colors.Black };
-
+		add.Clicked += async (sender, args) =>
+		{
+			await Navigation.PushModalAsync(new AddHomework(get));
+		};
 		Button list = new Button() { Text = "List", FontSize = 30, HorizontalOptions = LayoutOptions.Fill, VerticalOptions = LayoutOptions.Fill, BackgroundColor = Colors.LightGray, TextColor = Colors.Black };
 		list.Clicked += async (sender, args) =>
 		{
-			await Navigation.PushModalAsync(new HomeworkOverviewPage(new GetHomeworks()));
+			await Navigation.PushModalAsync(new HomeworkOverviewPage(get));
 		};
 
 		Frame addF = new Frame
@@ -36,20 +22,28 @@ public class MainMenue : ContentPage
 			Content = add,
 			BorderColor = Colors.Black,
 			Padding = new Thickness(5),
-			BackgroundColor = Colors.LightGray
+			BackgroundColor = Colors.LightGray,
+			Margin = 10,
+			HorizontalOptions = LayoutOptions.Center,
+			WidthRequest = 200,
+			HeightRequest = 80
 		};
 		Frame listF = new Frame
 		{
 			Content = list,
 			BorderColor = Colors.LightGray,
 			Padding = new Thickness(5),
-			BackgroundColor = Colors.LightGray
+			BackgroundColor = Colors.LightGray,
+			Margin = 10,
+			HorizontalOptions = LayoutOptions.Center,
+			WidthRequest = 200,
+			HeightRequest = 80
 		};
 
-		grid.Add(addF, 1, 1);
-		grid.Add(listF, 1, 3);
+		views.Add(addF);
+		views.Add(listF);
 
-		Content = grid;
+		Content = views;
 
 	}
 }

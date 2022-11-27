@@ -51,5 +51,7 @@
 	<ItemGroup>
 	  <None Remove="Resources\Images\delete.png" />
 	</ItemGroup>
+	
+	
 
 </Project>

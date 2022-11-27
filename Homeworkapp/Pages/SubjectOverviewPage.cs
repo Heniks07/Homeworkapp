@@ -34,7 +34,7 @@ public class SubjectOverviewPage : ContentPage
                 await Navigation.PushModalAsync(new HomeworkOverviewPage(getHomeworks));
                 Ptimer.Dispose();
             };
-            Label label = new Label() { TextColor = Colors.Black, Text = s, FontSize = 40, VerticalOptions = LayoutOptions.Center };
+            Label label = new Label() { Text = s, FontSize = 40, VerticalOptions = LayoutOptions.Center };
             Label non = new Label() { Text = "" };
 
             Grid grid = new Grid

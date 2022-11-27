@@ -6,6 +6,6 @@ public partial class App : Application
     {
         InitializeComponent();
 
-        MainPage = new MainMenue();
+        MainPage = new MainMenue(new GetHomeworks());
     }
 }
