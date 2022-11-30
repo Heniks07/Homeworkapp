@@ -4,8 +4,6 @@ public class AddHomework : ContentPage
 {
     GetHomeworks getHomeworks;
 
-    string descriptionString;
-    bool desAdded = false;
     string homeName;
     bool nameAdded = false;
     string Selectedsubject;
@@ -18,9 +16,8 @@ public class AddHomework : ContentPage
 
 
 
-    public AddHomework(GetHomeworks get)
+    public AddHomework()
     {
-        getHomeworks = get;
 
         VerticalStackLayout vs = new VerticalStackLayout() { Margin = 30 };
         //back and add
@@ -28,7 +25,7 @@ public class AddHomework : ContentPage
             Button button = new Button { Text = "Back", FontSize = 25, HorizontalOptions = LayoutOptions.Fill, VerticalOptions = LayoutOptions.Fill, BackgroundColor = Colors.LightGray, TextColor = Colors.Black };
             button.Clicked += async (sender, args) =>
             {
-                await Navigation.PushModalAsync(new MainMenue(get));
+                await Navigation.PushModalAsync(new MainMenue());
             };
 
             Button add = new Button
@@ -43,15 +40,14 @@ public class AddHomework : ContentPage
 
             add.Clicked += async (sender, args) =>
             {
-                if (desAdded && nameAdded && subjectSet && homeName != "" && descriptionString != "")
+                if (nameAdded && subjectSet && homeName != "")
                 {
-                    getHomeworks.add(homeName, Selectedsubject, descriptionString);
+                    getHomeworks.add(homeName, Selectedsubject);
                     name.Text = "";
                     description.Text = "";
                     subjecktPicekr.SelectedItem = null;
 
                     subjectSet = false;
-                    desAdded = false;
                     nameAdded = false;
                 }
             };
@@ -104,14 +100,6 @@ public class AddHomework : ContentPage
             Content = name,
             Margin = 3
         };
-        description = new Editor { Placeholder = "Description (max.60)", HorizontalOptions = LayoutOptions.Center, FontSize = 25, WidthRequest = 300, HeightRequest = 150, MaxLength = 60, TextColor = Colors.Black };
-        Frame descriptionF = new Frame
-        {
-            BorderColor = Colors.LightGray,
-            Padding = new Thickness(5),
-            Content = description,
-            Margin = 3
-        };
 
         List<string> subjects = new List<string>() { "Mathe", "Englisch", "Chemie", "Physik", "Deutsch" };
 
@@ -133,26 +121,14 @@ public class AddHomework : ContentPage
             Margin = 3
         };
 
-
-
-        description.TextChanged += descChange;
         name.TextChanged += nametChange;
 
         vs.Add(nameF);
         vs.Add(subjecktPicekrF);
-        vs.Add(descriptionF);
 
         Content = vs;
     }
 
-    void descChange(object sender, TextChangedEventArgs e)
-    {
-        descriptionString = e.NewTextValue;
-        if (!string.IsNullOrEmpty(descriptionString))
-        {
-            desAdded = true;
-        }
-    }
     void nametChange(object sender, EventArgs e)
     {
         homeName = ((Entry)sender).Text;

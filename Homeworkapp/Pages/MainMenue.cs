@@ -2,19 +2,21 @@ namespace Homeworkapp;
 
 public class MainMenue : ContentPage
 {
-	public MainMenue(GetHomeworks get)
+	public MainMenue()
 	{
+		Networking networking = new Networking();
+
 		VerticalStackLayout views = new VerticalStackLayout() { Margin = 10, };
 
-		Button add = new Button() { Text = "(Add)", FontSize = 30, HorizontalOptions = LayoutOptions.Fill, VerticalOptions = LayoutOptions.Fill, BackgroundColor = Colors.LightGray, TextColor = Colors.Black };
+		Button add = new Button() { Text = "Add", FontSize = 30, HorizontalOptions = LayoutOptions.Fill, VerticalOptions = LayoutOptions.Fill, BackgroundColor = Colors.LightGray, TextColor = Colors.Black, IsEnabled = false };
 		add.Clicked += async (sender, args) =>
 		{
-			await Navigation.PushModalAsync(new AddHomework(get));
+			await Navigation.PushModalAsync(new AddHomework());
 		};
 		Button list = new Button() { Text = "List", FontSize = 30, HorizontalOptions = LayoutOptions.Fill, VerticalOptions = LayoutOptions.Fill, BackgroundColor = Colors.LightGray, TextColor = Colors.Black };
 		list.Clicked += async (sender, args) =>
 		{
-			await Navigation.PushModalAsync(new HomeworkOverviewPage(get));
+			await Navigation.PushModalAsync(new AllHomewroksPage());
 		};
 
 		Frame addF = new Frame

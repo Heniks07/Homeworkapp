@@ -1,4 +1,6 @@
-﻿namespace Homeworkapp;
+﻿using Homeworkapp.Pages;
+
+namespace Homeworkapp;
 
 public partial class App : Application
 {
@@ -6,6 +8,13 @@ public partial class App : Application
     {
         InitializeComponent();
 
-        MainPage = new MainMenue(new GetHomeworks());
+        if (Preferences.Get("token", "") == "")
+        {
+            MainPage = new Login();
+        }
+        else
+        {
+            MainPage = new MainMenue();
+        }
     }
 }

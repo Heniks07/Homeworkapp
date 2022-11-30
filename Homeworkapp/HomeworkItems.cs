@@ -4,7 +4,11 @@
     {
         public string Name { get; set; }
         public string Subject { get; set; }
-        public string Description { get; set; }
+        public string date { get; set; }
+
+        public int ID { get; set; }
+
+
 
     }
 }

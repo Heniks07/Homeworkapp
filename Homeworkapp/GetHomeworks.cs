@@ -4,9 +4,10 @@
     {
         List<HomeworkItems> items = new List<HomeworkItems>();
 
-        public void add(string Name, string Subject, string Description)
+
+        public void add(string Name, string Subject)
         {
-            items.Add(new HomeworkItems { Name = Name, Subject = Subject, Description = Description });
+            items.Add(new HomeworkItems { Name = Name, Subject = Subject});
         }
 
         public List<HomeworkItems> GethomeworkItems => items;

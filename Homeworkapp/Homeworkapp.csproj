@@ -51,6 +51,10 @@
 	<ItemGroup>
 	  <None Remove="Resources\Images\delete.png" />
 	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
+	</ItemGroup>
 	
 	
 

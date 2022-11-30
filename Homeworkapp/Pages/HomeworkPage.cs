@@ -3,10 +3,8 @@ namespace Homeworkapp;
 public class HomeworkPage : ContentPage
 {
     PeriodicTimer Ptimer;
-    GetHomeworks getHomeworks;
-    public HomeworkPage(HomeworkItems homework, GetHomeworks get)
+    public HomeworkPage(HomeworkItems homework)
     {
-        getHomeworks = get;
         update(homework);
         timer(homework);
     }
@@ -23,27 +21,30 @@ public class HomeworkPage : ContentPage
 
     void update(HomeworkItems homework)
     {
+        
+
+
+
         VerticalStackLayout views = new VerticalStackLayout() { Margin = 30 };
-        //back ,title, delete
+        //back, delete
         {
             //back
             Button back = new Button { Text = "Back", FontSize = 18, HorizontalOptions = LayoutOptions.Center, BackgroundColor = Colors.LightGray, TextColor = Colors.Black };
             back.Clicked += async (sender, args) =>
             {
                 Ptimer.Dispose();
-                await Navigation.PushModalAsync(new SubjectOverviewPage(homework.Subject, getHomeworks));
+                await Navigation.PushModalAsync(new OneSubjectPage(homework.Subject));
             };
 
             //delete
             ImageButton delete = new ImageButton { Source = "delete.png", VerticalOptions = LayoutOptions.Center, HorizontalOptions = LayoutOptions.Center, MaximumHeightRequest = 50 };
             delete.Clicked += async (sender, args) =>
             {
-                getHomeworks.delete(homework);
-                await Navigation.PushModalAsync(new SubjectOverviewPage(homework.Subject, getHomeworks));
+                await deleteHomework(homework);
+                await Navigation.PushModalAsync(new OneSubjectPage(homework.Subject));
             };
 
-            //titel
-            Label label = new Label() { Text = homework.Name, FontSize = 40, VerticalOptions = LayoutOptions.Center };
+           
 
             Grid grid = new Grid
             {
@@ -71,7 +72,6 @@ public class HomeworkPage : ContentPage
             frame.Content = back;
             deleteFrame.Content = delete;
             grid.Add(frame, 0, 0);
-            grid.Add(label, 2, 0);
             grid.Add(deleteFrame, 3, 0);
             views.Add(grid);
 
@@ -81,17 +81,23 @@ public class HomeworkPage : ContentPage
         {
             Label subjectTitle = new Label() { Text = "\nSubject:", FontSize = 30, HorizontalOptions = LayoutOptions.Start };
             Label subject = new Label() { Text = homework.Subject, FontSize = 25, HorizontalOptions = LayoutOptions.Start };
-            if (!string.IsNullOrEmpty(homework.Description))
-            {
-                Label descriptionTitle = new Label() { Text = "\nDescription:", FontSize = 30, HorizontalOptions = LayoutOptions.Start };
-                Label description = new Label() { Text = homework.Description, FontSize = 25, HorizontalOptions = LayoutOptions.Start };
+            Label nameTitle = new Label() { Text = "\nName:", FontSize = 30, HorizontalOptions= LayoutOptions.Start };
+            Label name = new Label() { Text = homework.Name, FontSize = 25, VerticalOptions = LayoutOptions.Center };
 
-                views.Add(subjectTitle);
-                views.Add(subject);
-                views.Add(descriptionTitle);
-                views.Add(description);
-            }
+            views.Add(nameTitle);
+            views.Add(name);
+            views.Add(subjectTitle);
+            views.Add(subject);
+
+
             Content = views;
         }
+    }
+
+    async Task deleteHomework(HomeworkItems homework)
+    {
+        Networking networking= new Networking();
+
+        networking.makeDone("2f514b450d03d6224b0f54b7bcf9945d91f13cdaf1bc6ad41814a6c48b473f79b8555a5c9e6079de1ffb809064a0f5040205a29e9997fd85be5efd3fc0d9564d", homework.ID);
     }
 }

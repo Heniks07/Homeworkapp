@@ -1,12 +1,14 @@
+using Newtonsoft.Json;
+
 namespace Homeworkapp;
 
-public class SubjectOverviewPage : ContentPage
+public class OneSubjectPage : ContentPage
 {
     PeriodicTimer Ptimer;
-    GetHomeworks getHomeworks;
-    public SubjectOverviewPage(string s, GetHomeworks get)
+    List<HomeworkItems> items = new List<HomeworkItems>();
+    public OneSubjectPage(string s)
     {
-        getHomeworks = get;
+        getList();
         update(s);
         timer(s);
     }
@@ -31,7 +33,7 @@ public class SubjectOverviewPage : ContentPage
             Button button = new Button { Text = "Back", FontSize = 18, HorizontalOptions = LayoutOptions.Center, BackgroundColor = Colors.LightGray, TextColor = Colors.Black };
             button.Clicked += async (sender, args) =>
             {
-                await Navigation.PushModalAsync(new HomeworkOverviewPage(getHomeworks));
+                await Navigation.PushModalAsync(new AllHomewroksPage());
                 Ptimer.Dispose();
             };
             Label label = new Label() { Text = s, FontSize = 40, VerticalOptions = LayoutOptions.Center };
@@ -64,10 +66,12 @@ public class SubjectOverviewPage : ContentPage
             grid.Add(non, 0, 1);
             views.Add(grid);
         }
+        getList();
         //Homeworks
         {
+            
 
-            foreach (HomeworkItems homeworkItems in getHomeworks.GethomeworkItems)
+            foreach (HomeworkItems homeworkItems in items)
             {
                 if (homeworkItems.Subject == s)
                 {
@@ -81,7 +85,7 @@ public class SubjectOverviewPage : ContentPage
                     button.Clicked += async (sender, args) =>
                     {
                         Ptimer.Dispose();
-                        await Navigation.PushModalAsync(new HomeworkPage(homeworkItems, getHomeworks));
+                        await Navigation.PushModalAsync(new HomeworkPage(homeworkItems));
                     };
                     Label non = new Label() { Text = "" };
                     frame.Content = button;
@@ -94,5 +98,63 @@ public class SubjectOverviewPage : ContentPage
 
         Content = views;
     }
+    async Task getList()
+    {
+        try
+        {
+            Networking networking = new Networking();
+            //parsing("{\"has\":[[\"Biologie\",\"GG\",\"28-11-2022 18:43:33\",116],[\"Deutsch\",\"GG\",\"28-11-2022 18:43:58\",117]]}");
+            parsing(await networking.getHomeworks(""));
 
+        }
+        catch (System.IO.IOException)
+        {
+            System.Console.WriteLine("\n\nError\n\n");
+        }
+    }
+
+    async Task parsing(string Json)
+    {
+        var quote = Quote.FromJson(Json);
+        List<HomeworkItems> output = new List<HomeworkItems>();
+        foreach (List<string> list in quote.has)
+        {
+
+            HomeworkItems homeworkItem = new HomeworkItems()
+            {
+                Name = list[1],
+                Subject = list[0],
+                date = list[2],
+                ID = int.Parse(list[3])
+            };
+            output.Add(homeworkItem);
+
+
+            Console.WriteLine();
+        }
+        items= output;
+
+    }
+
+}
+public partial class Quote
+{
+
+    [JsonProperty("has")]
+    public List<List<string>> has { get; set; }
+}
+
+public partial class Quote
+{
+    public static Quote FromJson(string json) =>
+        JsonConvert.DeserializeObject<Quote>(json, Converter.Settings);
+}
+
+public class Converter
+{
+    public static readonly JsonSerializerSettings Settings = new JsonSerializerSettings
+    {
+        MetadataPropertyHandling = MetadataPropertyHandling.Ignore,
+        DateParseHandling = DateParseHandling.None,
+    };
 }
