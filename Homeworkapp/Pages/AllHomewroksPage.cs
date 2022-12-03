@@ -19,7 +19,7 @@ public class AllHomewroksPage : ContentPage
 
         while (await Ptimer.WaitForNextTickAsync())
         {
-            getList();
+            await getList();
             Console.WriteLine("update");
             update();
         }
@@ -78,7 +78,7 @@ public class AllHomewroksPage : ContentPage
         }
 
 
-        getList();
+        await getList();
 
         //Homework
         try
@@ -137,7 +137,7 @@ public class AllHomewroksPage : ContentPage
         {
             Networking networking = new Networking();
             //await parsing("{\"has\":[[\"Biologie\",\"GG\",\"28-11-2022 18:43:33\",116],[\"Deutsch\",\"GG\",\"28-11-2022 18:43:58\",117]]}");
-            parsing(await networking.getHomeworks(""));
+            parsing(await networking.GetHomeworks());
 
         }
         catch (System.IO.IOException)
@@ -146,7 +146,7 @@ public class AllHomewroksPage : ContentPage
         }
     }
 
-    async Task parsing(string Json)
+    void parsing(string Json)
     {
         var quote = Quote.FromJson(Json);
         List<HomeworkItems> output = new List<HomeworkItems>();
