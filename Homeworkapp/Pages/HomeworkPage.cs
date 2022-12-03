@@ -98,6 +98,6 @@ public class HomeworkPage : ContentPage
     {
         Networking networking= new Networking();
 
-        networking.makeDone("2f514b450d03d6224b0f54b7bcf9945d91f13cdaf1bc6ad41814a6c48b473f79b8555a5c9e6079de1ffb809064a0f5040205a29e9997fd85be5efd3fc0d9564d", homework.ID);
+        await networking.MakeDone(homework.ID);
     }
 }

@@ -2,7 +2,6 @@ namespace Homeworkapp;
 
 public class AddHomework : ContentPage
 {
-    GetHomeworks getHomeworks;
 
     string homeName;
     bool nameAdded = false;
@@ -11,7 +10,6 @@ public class AddHomework : ContentPage
 
 
     Entry name;
-    Editor description;
     Picker subjecktPicekr;
 
 
@@ -42,11 +40,10 @@ public class AddHomework : ContentPage
             {
                 if (nameAdded && subjectSet && homeName != "")
                 {
-                    getHomeworks.add(homeName, Selectedsubject);
+                    Networking networking = new Networking();
+                    await networking.AddHomework(homeName, Selectedsubject);
                     name.Text = "";
-                    description.Text = "";
                     subjecktPicekr.SelectedItem = null;
-
                     subjectSet = false;
                     nameAdded = false;
                 }

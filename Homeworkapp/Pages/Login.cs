@@ -58,7 +58,7 @@ public class Login : ContentPage
 	async Task OnLogin()
 	{
 		Networking networking = new Networking();
-		await networking.getToken(name.Text,password.Text);
+		await networking.GetToken(name.Text,password.Text);
 
 		token = Preferences.Get("token", "");
 		Console.WriteLine(token);

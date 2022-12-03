@@ -18,14 +18,14 @@ public class OneSubjectPage : ContentPage
         Ptimer = new PeriodicTimer(TimeSpan.FromSeconds(2));
         while (await Ptimer.WaitForNextTickAsync())
         {
-            update(s);
+            await update(s);
         }
 
 
 
     }
 
-    void update(string s)
+    async Task update(string s)
     {
         VerticalStackLayout views = new VerticalStackLayout() { Margin = 30 };
         //Back button and Title
@@ -66,7 +66,7 @@ public class OneSubjectPage : ContentPage
             grid.Add(non, 0, 1);
             views.Add(grid);
         }
-        getList();
+        await getList();
         //Homeworks
         {
             
@@ -104,7 +104,7 @@ public class OneSubjectPage : ContentPage
         {
             Networking networking = new Networking();
             //parsing("{\"has\":[[\"Biologie\",\"GG\",\"28-11-2022 18:43:33\",116],[\"Deutsch\",\"GG\",\"28-11-2022 18:43:58\",117]]}");
-            parsing(await networking.getHomeworks(""));
+            parsing(await networking.GetHomeworks());
 
         }
         catch (System.IO.IOException)
@@ -113,7 +113,7 @@ public class OneSubjectPage : ContentPage
         }
     }
 
-    async Task parsing(string Json)
+    void parsing(string Json)
     {
         var quote = Quote.FromJson(Json);
         List<HomeworkItems> output = new List<HomeworkItems>();
