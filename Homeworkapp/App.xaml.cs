@@ -4,7 +4,7 @@ namespace Homeworkapp;
 
 public partial class App : Application
 {
-    readonly List<int> Appversion = new List<int> { 0, 3, 1 };
+    readonly List<int> Appversion = new List<int> { 1, 0, 1 };
     public App()
     {
         InitializeComponent();
