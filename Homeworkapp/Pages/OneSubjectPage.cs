@@ -30,27 +30,23 @@ public class OneSubjectPage : ContentPage
         VerticalStackLayout views = new VerticalStackLayout() { Margin = 30 };
         //Back button and Title
         {
-            Button button = new Button { Text = "Back", FontSize = 18, HorizontalOptions = LayoutOptions.Center, BackgroundColor = Colors.LightGray, TextColor = Colors.Black };
+            Button button = new Button { Text = "Back", FontSize = 18, HorizontalOptions = LayoutOptions.Center, BackgroundColor = Colors.LightGray, TextColor = Colors.Black};
             button.Clicked += async (sender, args) =>
             {
                 await Navigation.PushModalAsync(new AllHomewroksPage());
                 Ptimer.Dispose();
             };
-            Label label = new Label() { Text = s, FontSize = 40, VerticalOptions = LayoutOptions.Center };
+            Label label = new Label() { Text = s, FontSize = 30, HorizontalOptions = LayoutOptions.Center, Margin = 10};
             Label non = new Label() { Text = "" };
 
             Grid grid = new Grid
             {
+                Margin= 10,
                 ColumnDefinitions =
                 {
                     new ColumnDefinition{Width = new GridLength(30, GridUnitType.Star) },
                     new ColumnDefinition{Width = new GridLength(10, GridUnitType.Star) },
                     new ColumnDefinition{Width = new GridLength(60, GridUnitType.Star) }
-                },
-                RowDefinitions =
-                {
-                    new RowDefinition{Height=new GridLength(50, GridUnitType.Star) },
-                    new RowDefinition{Height=new GridLength(50, GridUnitType.Star) }
                 }
             };
             Frame frame = new Frame
@@ -63,7 +59,6 @@ public class OneSubjectPage : ContentPage
             frame.Content = button;
             grid.Add(frame, 0, 0);
             grid.Add(label, 2, 0);
-            grid.Add(non, 0, 1);
             views.Add(grid);
         }
         await getList();
