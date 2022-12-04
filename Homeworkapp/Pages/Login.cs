@@ -1,4 +1,4 @@
-namespace Homeworkapp.Pages;
+namespace Homeworkapp;
 
 public class Login : ContentPage
 {
