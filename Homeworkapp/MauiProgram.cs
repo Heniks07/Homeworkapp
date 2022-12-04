@@ -1,4 +1,7 @@
-﻿namespace Homeworkapp;
+﻿using MetroLog.MicrosoftExtensions;
+using Microsoft.Extensions.DependencyInjection;
+
+namespace Homeworkapp;
 
 public static class MauiProgram
 {

@@ -32,12 +32,10 @@ public partial class App : Application
         Networking networking = new Networking();
         networking.GetVersion();
         string version = Preferences.Default.Get("version", "");
-        Console.WriteLine(version);
         string[] single = version.Split(".");
         List<int> newestVersion = new List<int>();
         foreach (string s in single)
         {
-            Console.WriteLine(s);
             int result = int.Parse(s);
             newestVersion.Add(result);
         }
