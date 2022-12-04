@@ -32,7 +32,6 @@ public partial class App : Application
         Networking networking = new Networking();
         networking.GetVersion();
         string version = Preferences.Default.Get("version", "");
-        Console.WriteLine(version);
         string[] single = version.Split(".");
         List<int> newestVersion = new List<int>();
         foreach (string s in single)
@@ -51,7 +50,7 @@ public partial class App : Application
         }
         else if (newestVersion[2] != Appversion[2])
         {
-            return "buck";
+            return "bug";
         }
         return "new";
     }
