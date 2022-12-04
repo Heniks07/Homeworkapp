@@ -20,7 +20,6 @@ public class AllHomewroksPage : ContentPage
         while (await Ptimer.WaitForNextTickAsync())
         {
             await getList();
-            Console.WriteLine("update");
             update();
         }
     }
@@ -161,7 +160,6 @@ public class AllHomewroksPage : ContentPage
                 ID = int.Parse(list[3])
 
             };
-            Console.WriteLine(homeworkItem.ID);
             output.Add(homeworkItem);
         }
         items= output;
