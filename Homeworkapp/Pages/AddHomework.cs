@@ -20,7 +20,7 @@ public class AddHomework : ContentPage
         VerticalStackLayout vs = new VerticalStackLayout() { Margin = 30 };
         //back and add
         {
-            Button button = new Button { Text = "Back", FontSize = 25, HorizontalOptions = LayoutOptions.Fill, VerticalOptions = LayoutOptions.Fill, BackgroundColor = Colors.LightGray, TextColor = Colors.Black };
+            Button button = new Button { Text = "Back", FontSize = 18, HorizontalOptions = LayoutOptions.Center, BackgroundColor = Colors.LightGray, TextColor = Colors.Black };
             button.Clicked += async (sender, args) =>
             {
                 await Navigation.PushModalAsync(new MainMenue());
@@ -29,9 +29,8 @@ public class AddHomework : ContentPage
             Button add = new Button
             {
                 Text = "Add",
-                FontSize = 25,
-                HorizontalOptions = LayoutOptions.Fill,
-                VerticalOptions = LayoutOptions.Fill,
+                FontSize = 18,
+                HorizontalOptions = LayoutOptions.Center,
                 BackgroundColor = Colors.LightGray,
                 TextColor = Colors.Black
             };
@@ -48,8 +47,6 @@ public class AddHomework : ContentPage
                     nameAdded = false;
                 }
             };
-            Label non = new Label() { Text = "" };
-
             Grid grid = new Grid
             {
                 ColumnDefinitions =
@@ -57,11 +54,6 @@ public class AddHomework : ContentPage
                     new ColumnDefinition{Width = new GridLength(30, GridUnitType.Star) },
                     new ColumnDefinition{Width = new GridLength(10, GridUnitType.Star) },
                     new ColumnDefinition{Width = new GridLength(60, GridUnitType.Star) }
-                },
-                RowDefinitions =
-                {
-                    new RowDefinition{Height=new GridLength(50, GridUnitType.Star) },
-                    new RowDefinition{Height=new GridLength(50, GridUnitType.Star) }
                 }
             };
             Frame frame = new Frame
@@ -83,7 +75,6 @@ public class AddHomework : ContentPage
 
             grid.Add(frame, 0, 0);
             grid.Add(frame2, 2, 0);
-            grid.Add(non, 0, 1);
             vs.Add(grid);
 
         }
