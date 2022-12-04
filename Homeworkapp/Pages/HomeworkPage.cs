@@ -37,7 +37,7 @@ public class HomeworkPage : ContentPage
             };
 
             //delete
-            ImageButton delete = new ImageButton { Source = "delete.png", HorizontalOptions = LayoutOptions.Center,MaximumHeightRequest = 50 };
+            ImageButton delete = new ImageButton { Source = "delete.png", VerticalOptions = LayoutOptions.Center, HorizontalOptions = LayoutOptions.Center, MaximumHeightRequest = 50 };
             delete.Clicked += async (sender, args) =>
             {
                 await deleteHomework(homework);
@@ -48,7 +48,6 @@ public class HomeworkPage : ContentPage
 
             Grid grid = new Grid
             {
-                Margin= 10,
                 ColumnDefinitions =
                 {
                 new ColumnDefinition{Width = new GridLength(30, GridUnitType.Star) },
