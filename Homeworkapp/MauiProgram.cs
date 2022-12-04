@@ -1,6 +1,4 @@
-﻿using MetroLog.MicrosoftExtensions;
-using Microsoft.Extensions.DependencyInjection;
-
+﻿using CommunityToolkit.Maui;
 namespace Homeworkapp;
 
 public static class MauiProgram
@@ -10,6 +8,7 @@ public static class MauiProgram
         var builder = MauiApp.CreateBuilder();
         builder
             .UseMauiApp<App>()
+            .UseMauiApp<App>().UseMauiCommunityToolkit()
             .ConfigureFonts(fonts =>
             {
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");

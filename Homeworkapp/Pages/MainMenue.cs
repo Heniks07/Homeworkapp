@@ -9,6 +9,12 @@ public class MainMenue : ContentPage
 
         VerticalStackLayout views = new VerticalStackLayout() { Margin = 10, };
 
+        Button settings = new Button() { Text="Settings",HorizontalOptions=LayoutOptions.End};
+        settings.Clicked += async (sender, args) =>
+        {
+            await Navigation.PushModalAsync(new SettingsPage());
+        };
+
         Button add = new Button() { Text = "Add", FontSize = 30, HorizontalOptions = LayoutOptions.Fill, VerticalOptions = LayoutOptions.Fill, BackgroundColor = Colors.LightGray, TextColor = Colors.Black };
         add.Clicked += async (sender, args) =>
         {
@@ -23,7 +29,8 @@ public class MainMenue : ContentPage
         timetable.Clicked += async (sender, args) =>
         {
             await Navigation.PushModalAsync(new Timetable());
-        };     
+        };
+
 
         Frame addF = new Frame
         {
@@ -59,6 +66,7 @@ public class MainMenue : ContentPage
             HeightRequest = 80
         };
 
+        views.Add(settings);
         views.Add(addF);
         views.Add(listF);
         views.Add(timetableF);

@@ -1,6 +1,4 @@
-﻿using Homeworkapp.Pages;
-
-namespace Homeworkapp;
+﻿namespace Homeworkapp;
 
 public partial class App : Application
 {
