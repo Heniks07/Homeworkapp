@@ -11,7 +11,7 @@ public class UpdateApp : ContentPage
         {
             case "version":
                 {
-                    outdatedStatus = "to make your app compatible with our servers";
+                    outdatedStatus = " to make your app compatible with our servers";
                     break;
                 }
             case "feature":
