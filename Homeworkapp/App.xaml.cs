@@ -1,4 +1,6 @@
-﻿namespace Homeworkapp;
+﻿using Homeworkapp.Pages;
+
+namespace Homeworkapp;
 
 public partial class App : Application
 {
@@ -34,6 +36,7 @@ public partial class App : Application
         List<int> newestVersion = new List<int>();
         foreach (string s in single)
         {
+            Console.WriteLine(s);
             int result = int.Parse(s);
             newestVersion.Add(result);
         }

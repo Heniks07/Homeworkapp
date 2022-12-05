@@ -1,6 +1,4 @@
-﻿using MetroLog.MicrosoftExtensions;
-
-namespace Homeworkapp;
+﻿namespace Homeworkapp;
 
 public partial class MainPage : ContentPage
 {
