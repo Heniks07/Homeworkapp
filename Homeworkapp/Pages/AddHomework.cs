@@ -20,7 +20,10 @@ public class AddHomework : ContentPage
         VerticalStackLayout vs = new VerticalStackLayout() { Margin = 30 };
         //back and add
         {
+
             Button button = new Button { Text = "Back", FontSize = 25, HorizontalOptions = LayoutOptions.Center, BackgroundColor = Colors.LightGray, TextColor = Colors.Black };
+
+            
             button.Clicked += async (sender, args) =>
             {
                 await Navigation.PushModalAsync(new MainMenue());
@@ -30,7 +33,9 @@ public class AddHomework : ContentPage
             {
                 Text = "Add",
                 FontSize = 25,
+
                 HorizontalOptions = LayoutOptions.Center,
+
                 BackgroundColor = Colors.LightGray,
                 TextColor = Colors.Black
             };
@@ -47,6 +52,7 @@ public class AddHomework : ContentPage
                     nameAdded = false;
                 }
             };
+
 
             Grid grid = new Grid
             {
@@ -90,7 +96,9 @@ public class AddHomework : ContentPage
             Margin = 3
         };
 
-        List<string> subjects = new List<string>() { "Biologie", "Chemie", "Deutsch", "Englisch", "Französisch","Geschichte","Informatik","Kunst","Latein","Mathe","Musik","Physik","Religion Ev.","Religion Kth." };
+
+        List<string> subjects = new List<string>() { "Biologie", "Chemie", "Deutsch", "Englisch", "FranzÃ¶sisch","Geschichte","Informatik","Kunst","Latein","Mathe","Musik","Physik","Religion Ev.","Religion Kth." };
+
 
         subjecktPicekr = new Picker
         {
@@ -101,6 +109,7 @@ public class AddHomework : ContentPage
             HorizontalOptions = LayoutOptions.Center,
             TextColor = Colors.Black,
             TitleColor = Colors.Black
+
         };
         subjecktPicekr.SelectedIndexChanged += OnPickerSelectedIndexChanged;
         Frame subjecktPicekrF = new Frame

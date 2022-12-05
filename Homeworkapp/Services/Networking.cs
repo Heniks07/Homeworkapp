@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Net;
 using System.Text;
 using System.Text.Json;
@@ -54,7 +53,9 @@ namespace Homeworkapp
             string token = Preferences.Default.Get("token", "");
             string responseString;
             string json = "{\"token\":\""+token+"\",\"id\":\""+id+"\"}";
+            Console.WriteLine(json);
 
+            Console.WriteLine(json);
 
 
             Uri uri = new Uri("http://homeworkmpg.ddns.net:12345/api/done");
@@ -67,6 +68,8 @@ namespace Homeworkapp
                 {
                     HttpContent httpContent = response.Content;
                     string jsonContent = httpContent.ReadAsStringAsync().Result;
+                    Console.WriteLine(jsonContent);
+                    Console.WriteLine("done");
                 }
                 else
                 {
@@ -83,6 +86,7 @@ namespace Homeworkapp
         {
             string token = Preferences.Default.Get("token", "");
             string json = "{\"token\":\"" + token + "\",\"subject\":\""+Subject+"\",\"content\":\""+Name+"\"}";
+            Console.WriteLine(json);
 
             Uri uri = new Uri("http://homeworkmpg.ddns.net:12345/api/new_ha");
             try
@@ -94,6 +98,8 @@ namespace Homeworkapp
                 {
                     HttpContent httpContent = response.Content;
                     string jsonContent = httpContent.ReadAsStringAsync().Result;
+                    Console.WriteLine(jsonContent);
+                    Console.WriteLine("done");
                 }
                 else
                 {
@@ -133,21 +139,6 @@ namespace Homeworkapp
             {
                 string result = streamReader.ReadToEnd();
                 Preferences.Default.Set("version", result);
-            }
-        }
-
-        public async Task<string> GetTimetable()
-        {
-            string token = Preferences.Default.Get("token", "");
-            Uri url = new Uri("http://homeworkmpg.ddns.net:12345/api/timetable/"+ token);
-            Console.WriteLine(url.ToString());
-            var httpRequest = (HttpWebRequest)WebRequest.Create(url);
-            var httpResponse = (HttpWebResponse)httpRequest.GetResponse();
-            using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
-            {
-                var result = streamReader.ReadToEnd();
-                Console.WriteLine(result);
-                return result;
             }
         }
 

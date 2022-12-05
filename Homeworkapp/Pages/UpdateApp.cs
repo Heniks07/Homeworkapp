@@ -11,7 +11,7 @@ public class UpdateApp : ContentPage
         {
             case "version":
                 {
-                    outdatedStatus = "to make your app compatible with our servers";
+                    outdatedStatus = " to make your app compatible with our servers";
                     break;
                 }
             case "feature":
@@ -19,9 +19,9 @@ public class UpdateApp : ContentPage
                     outdatedStatus = "to use the latest features";
                     break;
                 }
-            case "bug":
+            case "buck":
                 {
-                    outdatedStatus = "to acces the latest bugfixes";
+                    outdatedStatus = "to acces the latest buck fixes";
                     buck= true;
                     break;
                 }

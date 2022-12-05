@@ -36,7 +36,8 @@ public class OneSubjectPage : ContentPage
                 await Navigation.PushModalAsync(new AllHomewroksPage());
                 Ptimer.Dispose();
             };
-            Label label = new Label() { Text = s, FontSize = 40, HorizontalOptions = LayoutOptions.Center };
+            Label label = new Label() { Text = s, FontSize = 40, VerticalOptions = LayoutOptions.Center };
+            Label non = new Label() { Text = "" };
 
             Grid grid = new Grid
             {
@@ -45,6 +46,11 @@ public class OneSubjectPage : ContentPage
                     new ColumnDefinition{Width = new GridLength(30, GridUnitType.Star) },
                     new ColumnDefinition{Width = new GridLength(10, GridUnitType.Star) },
                     new ColumnDefinition{Width = new GridLength(60, GridUnitType.Star) }
+                },
+                RowDefinitions =
+                {
+                    new RowDefinition{Height=new GridLength(50, GridUnitType.Star) },
+                    new RowDefinition{Height=new GridLength(50, GridUnitType.Star) }
                 }
             };
             Frame frame = new Frame
@@ -57,6 +63,7 @@ public class OneSubjectPage : ContentPage
             frame.Content = button;
             grid.Add(frame, 0, 0);
             grid.Add(label, 2, 0);
+            grid.Add(non, 0, 1);
             views.Add(grid);
         }
         await getList();
