@@ -20,7 +20,7 @@ public class AddHomework : ContentPage
         VerticalStackLayout vs = new VerticalStackLayout() { Margin = 30 };
         //back and add
         {
-            Button button = new Button { Text = "Back", FontSize = 25, HorizontalOptions = LayoutOptions.Fill, VerticalOptions = LayoutOptions.Fill, BackgroundColor = Colors.LightGray, TextColor = Colors.Black };
+            Button button = new Button { Text = "Back", FontSize = 25, HorizontalOptions = LayoutOptions.Center, BackgroundColor = Colors.LightGray, TextColor = Colors.Black };
             button.Clicked += async (sender, args) =>
             {
                 await Navigation.PushModalAsync(new MainMenue());
@@ -30,8 +30,7 @@ public class AddHomework : ContentPage
             {
                 Text = "Add",
                 FontSize = 25,
-                HorizontalOptions = LayoutOptions.Fill,
-                VerticalOptions = LayoutOptions.Fill,
+                HorizontalOptions = LayoutOptions.Center,
                 BackgroundColor = Colors.LightGray,
                 TextColor = Colors.Black
             };
@@ -48,7 +47,6 @@ public class AddHomework : ContentPage
                     nameAdded = false;
                 }
             };
-            Label non = new Label() { Text = "" };
 
             Grid grid = new Grid
             {
@@ -57,11 +55,6 @@ public class AddHomework : ContentPage
                     new ColumnDefinition{Width = new GridLength(30, GridUnitType.Star) },
                     new ColumnDefinition{Width = new GridLength(10, GridUnitType.Star) },
                     new ColumnDefinition{Width = new GridLength(60, GridUnitType.Star) }
-                },
-                RowDefinitions =
-                {
-                    new RowDefinition{Height=new GridLength(50, GridUnitType.Star) },
-                    new RowDefinition{Height=new GridLength(50, GridUnitType.Star) }
                 }
             };
             Frame frame = new Frame
