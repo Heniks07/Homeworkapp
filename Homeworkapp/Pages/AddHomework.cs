@@ -90,7 +90,7 @@ public class AddHomework : ContentPage
             Margin = 3
         };
 
-        List<string> subjects = new List<string>() { "Mathe", "Englisch", "Chemie", "Physik", "Deutsch" };
+        List<string> subjects = new List<string>() { "Biologie", "Chemie", "Deutsch", "Englisch", "Französisch","Geschichte","Informatik","Kunst","Latein","Mathe","Musik","Physik","Religion Ev.","Religion Kth." };
 
         subjecktPicekr = new Picker
         {
@@ -99,7 +99,8 @@ public class AddHomework : ContentPage
             FontSize = 25,
             WidthRequest = 300,
             HorizontalOptions = LayoutOptions.Center,
-            TextColor = Colors.Black
+            TextColor = Colors.Black,
+            TitleColor = Colors.Black
         };
         subjecktPicekr.SelectedIndexChanged += OnPickerSelectedIndexChanged;
         Frame subjecktPicekrF = new Frame
