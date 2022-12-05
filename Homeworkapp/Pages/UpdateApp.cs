@@ -19,9 +19,9 @@ public class UpdateApp : ContentPage
                     outdatedStatus = "to use the latest features";
                     break;
                 }
-            case "bug":
+            case "buck":
                 {
-                    outdatedStatus = "to acces the latest bugfixes";
+                    outdatedStatus = "to acces the latest buck fixes";
                     buck= true;
                     break;
                 }
