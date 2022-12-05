@@ -76,7 +76,6 @@ public class AddHomework : ContentPage
 
             grid.Add(frame, 0, 0);
             grid.Add(frame2, 2, 0);
-            grid.Add(non, 0, 1);
             vs.Add(grid);
 
         }
