@@ -1,4 +1,4 @@
-namespace Homeworkapp.Pages;
+namespace Homeworkapp;
 
 public class Login : ContentPage
 {
@@ -61,7 +61,6 @@ public class Login : ContentPage
 		await networking.GetToken(name.Text,password.Text);
 
 		token = Preferences.Get("token", "");
-		Console.WriteLine(token);
 		if(token != "")
 		{
             await Navigation.PushModalAsync(new MainMenue());
