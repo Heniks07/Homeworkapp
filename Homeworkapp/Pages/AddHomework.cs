@@ -92,6 +92,7 @@ public class AddHomework : ContentPage
 
         List<string> subjects = new List<string>() { "Biologie", "Chemie", "Deutsch", "Englisch", "Französisch","Geschichte","Informatik","Kunst","Latein","Mathe","Musik","Physik","Religion Ev.","Religion Kth." };
 
+
         subjecktPicekr = new Picker
         {
             Title = "Select subject",
@@ -102,6 +103,8 @@ public class AddHomework : ContentPage
             TextColor = Colors.Black,
             TitleColor = Colors.Black
         };
+
+
         subjecktPicekr.SelectedIndexChanged += OnPickerSelectedIndexChanged;
         Frame subjecktPicekrF = new Frame
         {
