@@ -33,17 +33,15 @@ public class AllHomewroksPage : ContentPage
 
         //Back, TestAdd
         {
-            Button button = new Button { Text = "Back", FontSize = 18, HorizontalOptions = LayoutOptions.Fill, VerticalOptions = LayoutOptions.Fill, BackgroundColor = Colors.LightGray, TextColor = Colors.Black };
+            Button button = new Button { Text = "Back", FontSize = 18, HorizontalOptions = LayoutOptions.Center, BackgroundColor = Colors.LightGray, TextColor = Colors.Black };
             button.Clicked += async (sender, args) =>
             {
                 await Navigation.PushModalAsync(new MainMenue());
                 Ptimer.Dispose();
             };
 
-            Label label = new Label { Text = "Hausaufgaben", VerticalOptions = LayoutOptions.Center, FontSize = 30 };
+            Label label = new Label { Text = "Hausaufgaben", HorizontalOptions = LayoutOptions.Center, FontSize = 30 };
 
-
-            Label non = new Label() { Text = "" };
 
             Grid grid = new Grid
             {
@@ -52,11 +50,6 @@ public class AllHomewroksPage : ContentPage
                     new ColumnDefinition{Width = new GridLength(30, GridUnitType.Star) },
                     new ColumnDefinition{Width = new GridLength(10, GridUnitType.Star) },
                     new ColumnDefinition{Width = new GridLength(70, GridUnitType.Star) }
-                },
-                RowDefinitions =
-                {
-                    new RowDefinition{Height=new GridLength(50, GridUnitType.Star) },
-                    new RowDefinition{Height=new GridLength(50, GridUnitType.Star) }
                 }
             };
             Frame frame = new Frame
@@ -71,7 +64,6 @@ public class AllHomewroksPage : ContentPage
 
             grid.Add(frame, 0, 0);
             grid.Add(label, 2, 0);
-            grid.Add(non, 0, 1);
             vs.Add(grid);
 
         }
