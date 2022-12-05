@@ -40,7 +40,7 @@ public class AllHomewroksPage : ContentPage
                 Ptimer.Dispose();
             };
 
-            Label label = new Label { Text = "Hausaufgaben", VerticalOptions = LayoutOptions.Center, FontSize = 30 };
+            Label label = new Label { Text = "Hausaufgaben", HorizontalOptions = LayoutOptions.Center, FontSize = 30 };
 
 
             Grid grid = new Grid
