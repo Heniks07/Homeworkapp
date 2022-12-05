@@ -9,12 +9,6 @@ public class MainMenue : ContentPage
 
         VerticalStackLayout views = new VerticalStackLayout() { Margin = 10, };
 
-        Button settings = new Button() { Text="Settings",HorizontalOptions=LayoutOptions.End};
-        settings.Clicked += async (sender, args) =>
-        {
-            await Navigation.PushModalAsync(new SettingsPage());
-        };
-
         Button add = new Button() { Text = "Add", FontSize = 30, HorizontalOptions = LayoutOptions.Fill, VerticalOptions = LayoutOptions.Fill, BackgroundColor = Colors.LightGray, TextColor = Colors.Black };
         add.Clicked += async (sender, args) =>
         {
@@ -25,12 +19,6 @@ public class MainMenue : ContentPage
         {
             await Navigation.PushModalAsync(new AllHomewroksPage());
         };
-        Button timetable = new Button() { Text = "Timetable", FontSize = 30, HorizontalOptions = LayoutOptions.Fill, VerticalOptions = LayoutOptions.Fill, BackgroundColor = Colors.LightGray, TextColor = Colors.Black };
-        timetable.Clicked += async (sender, args) =>
-        {
-            await Navigation.PushModalAsync(new Timetable());
-        };
-
 
         Frame addF = new Frame
         {
@@ -54,22 +42,9 @@ public class MainMenue : ContentPage
             WidthRequest = 200,
             HeightRequest = 80
         };
-        Frame timetableF = new Frame
-        {
-            Content = timetable,
-            BorderColor = Colors.LightGray,
-            Padding = new Thickness(5),
-            BackgroundColor = Colors.LightGray,
-            Margin = 10,
-            HorizontalOptions = LayoutOptions.Center,
-            WidthRequest = 200,
-            HeightRequest = 80
-        };
 
-        views.Add(settings);
         views.Add(addF);
         views.Add(listF);
-        views.Add(timetableF);
 
         Content = views;
 
