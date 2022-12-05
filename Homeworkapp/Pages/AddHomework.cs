@@ -10,7 +10,7 @@ public class AddHomework : ContentPage
 
 
     Entry name;
-    Picker subjecktPicekr;
+    Picker subjecktPicker;
 
 
 
@@ -30,7 +30,8 @@ public class AddHomework : ContentPage
             {
                 Text = "Add",
                 FontSize = 25,
-                HorizontalOptions = LayoutOptions.Center,
+                HorizontalOptions = LayoutOptions.Fill,
+                VerticalOptions = LayoutOptions.Fill,
                 BackgroundColor = Colors.LightGray,
                 TextColor = Colors.Black
             };
@@ -42,7 +43,7 @@ public class AddHomework : ContentPage
                     Networking networking = new Networking();
                     await networking.AddHomework(homeName, Selectedsubject);
                     name.Text = "";
-                    subjecktPicekr.SelectedItem = null;
+                    subjecktPicker.SelectedItem = null;
                     subjectSet = false;
                     nameAdded = false;
                 }
@@ -57,67 +58,40 @@ public class AddHomework : ContentPage
                     new ColumnDefinition{Width = new GridLength(60, GridUnitType.Star) }
                 }
             };
-            Frame frame = new Frame
-            {
-                BorderColor = Colors.Black,
-                Padding = new Thickness(5),
-                BackgroundColor = Colors.LightGray,
-                Content = button
-            };
-            Frame frame2 = new Frame
-            {
-                BorderColor = Colors.Black,
-                Padding = new Thickness(5),
-                BackgroundColor = Colors.LightGray,
-
-                Content = add
-            };
+            
+            
 
 
-            grid.Add(frame, 0, 0);
-            grid.Add(frame2, 2, 0);
+            grid.Add(button, 0, 0);
+            grid.Add(add, 2, 0);
             vs.Add(grid);
 
         }
 
 
-        name = new Entry { Placeholder = "Name (max.20)", HorizontalOptions = LayoutOptions.Center, FontSize = 25, WidthRequest = 300, HeightRequest = 50, MaxLength = 20, TextColor = Colors.Black };
-        Frame nameF = new Frame
-        {
-            BorderColor = Colors.LightGray,
-            Padding = new Thickness(5),
-            Content = name,
-            Margin = 3
-        };
+        name = new Entry { Placeholder = "Name (max.20)", HorizontalOptions = LayoutOptions.Center, FontSize = 25, WidthRequest = 300, HeightRequest = 50, MaxLength = 20};
+        
 
         List<string> subjects = new List<string>() { "Biologie", "Chemie", "Deutsch", "Englisch", "Französisch","Geschichte","Informatik","Kunst","Latein","Mathe","Musik","Physik","Religion Ev.","Religion Kth." };
 
 
-        subjecktPicekr = new Picker
+        subjecktPicker = new Picker
         {
             Title = "Select subject",
             ItemsSource = subjects,
             FontSize = 25,
             WidthRequest = 300,
-            HorizontalOptions = LayoutOptions.Center,
-            TextColor = Colors.Black,
-            TitleColor = Colors.Black
+            HorizontalOptions = LayoutOptions.Center
         };
 
 
-        subjecktPicekr.SelectedIndexChanged += OnPickerSelectedIndexChanged;
-        Frame subjecktPicekrF = new Frame
-        {
-            BorderColor = Colors.LightGray,
-            Padding = new Thickness(5),
-            Content = subjecktPicekr,
-            Margin = 3
-        };
+        subjecktPicker.SelectedIndexChanged += OnPickerSelectedIndexChanged;
+
 
         name.TextChanged += nametChange;
 
-        vs.Add(nameF);
-        vs.Add(subjecktPicekrF);
+        vs.Add(name);
+        vs.Add(subjecktPicker);
 
         Content = vs;
     }

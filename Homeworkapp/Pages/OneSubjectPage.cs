@@ -36,7 +36,7 @@ public class OneSubjectPage : ContentPage
                 await Navigation.PushModalAsync(new AllHomewroksPage());
                 Ptimer.Dispose();
             };
-            Label label = new Label() { Text = s, FontSize = 40, HorizontalOptions = LayoutOptions.Center };
+            Label label = new Label() { Text = s, FontSize = 35, HorizontalOptions = LayoutOptions.Center };
 
             Grid grid = new Grid
             {
