@@ -2,22 +2,12 @@ namespace Homeworkapp;
 
 public class HomeworkPage : ContentPage
 {
-    PeriodicTimer Ptimer;
     public HomeworkPage(HomeworkItems homework)
     {
         update(homework);
-        timer(homework);
     }
 
-    async Task timer(HomeworkItems homework)
-    {
-        Ptimer = new PeriodicTimer(TimeSpan.FromSeconds(2));
 
-        while (await Ptimer.WaitForNextTickAsync())
-        {
-            update(homework);
-        }
-    }
 
     void update(HomeworkItems homework)
     {
@@ -32,7 +22,6 @@ public class HomeworkPage : ContentPage
             Button back = new Button { Text = "Back", FontSize = 18, HorizontalOptions = LayoutOptions.Center, BackgroundColor = Colors.LightGray, TextColor = Colors.Black };
             back.Clicked += async (sender, args) =>
             {
-                Ptimer.Dispose();
                 await Navigation.PushModalAsync(new OneSubjectPage(homework.Subject));
             };
 

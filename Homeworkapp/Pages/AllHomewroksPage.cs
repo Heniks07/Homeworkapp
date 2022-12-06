@@ -28,7 +28,7 @@ public class AllHomewroksPage : ContentPage
     {
 
 
-
+        ScrollView scroll = new ScrollView();
         VerticalStackLayout vs = new VerticalStackLayout() { Margin = 30 };
 
         //Back, TestAdd
@@ -77,7 +77,6 @@ public class AllHomewroksPage : ContentPage
             {
 
                 List<string> subjects = new List<string>();
-                ScrollView scrollView = new ScrollView();
 
 
 
@@ -109,8 +108,8 @@ public class AllHomewroksPage : ContentPage
                     vs.Add(non);
                 }
 
-                scrollView.Content = vs;
-                Content = scrollView;
+                scroll.Content = vs;
+                Content = scroll;
 
             }
         }
