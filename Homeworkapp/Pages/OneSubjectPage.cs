@@ -27,6 +27,7 @@ public class OneSubjectPage : ContentPage
 
     async Task update(string s)
     {
+        ScrollView scroll = new ScrollView();
         VerticalStackLayout views = new VerticalStackLayout() { Margin = 30 };
         //Back button and Title
         {
@@ -88,8 +89,8 @@ public class OneSubjectPage : ContentPage
             }
         }
 
-
-        Content = views;
+        scroll.Content= views;
+        Content = scroll;
     }
     async Task getList()
     {

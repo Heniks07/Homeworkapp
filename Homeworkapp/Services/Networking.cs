@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Net;
+﻿using System.Net;
 using System.Text;
 using System.Text.Json;
 
@@ -53,7 +51,7 @@ namespace Homeworkapp
             //2f514b450d03d6224b0f54b7bcf9945d91f13cdaf1bc6ad41814a6c48b473f79b8555a5c9e6079de1ffb809064a0f5040205a29e9997fd85be5efd3fc0d9564d
             string token = Preferences.Default.Get("token", "");
             string responseString;
-            string json = "{\"token\":\""+token+"\",\"id\":\""+id+"\"}";
+            string json = "{\"token\":\"" + token + "\",\"id\":\"" + id + "\"}";
 
 
 
@@ -82,7 +80,7 @@ namespace Homeworkapp
         public async Task AddHomework(string Name, string Subject)
         {
             string token = Preferences.Default.Get("token", "");
-            string json = "{\"token\":\"" + token + "\",\"subject\":\""+Subject+"\",\"content\":\""+Name+"\"}";
+            string json = "{\"token\":\"" + token + "\",\"subject\":\"" + Subject + "\",\"content\":\"" + Name + "\"}";
 
             Uri uri = new Uri("http://homeworkmpg.ddns.net:12345/api/new_ha");
             try
@@ -111,7 +109,7 @@ namespace Homeworkapp
         public async Task<string> GetHomeworks()
         {
             string token = Preferences.Default.Get("token", "");
-            var url = "http://homeworkmpg.ddns.net:12345/api/all_ha/"+token;
+            var url = "http://homeworkmpg.ddns.net:12345/api/all_ha/" + token;
 
             var httpRequest = (HttpWebRequest)WebRequest.Create(url);
 
@@ -127,8 +125,8 @@ namespace Homeworkapp
         public async Task GetVersion()
         {
             var url = "http://homeworkmpg.ddns.net:12345/api/version";
-            var httpRequest = (HttpWebRequest) WebRequest.Create(url);
-            var httpResponse = (HttpWebResponse) httpRequest.GetResponse();
+            var httpRequest = (HttpWebRequest)WebRequest.Create(url);
+            var httpResponse = (HttpWebResponse)httpRequest.GetResponse();
             using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
             {
                 string result = streamReader.ReadToEnd();
@@ -139,7 +137,7 @@ namespace Homeworkapp
         public async Task<string> GetTimetable()
         {
             string token = Preferences.Default.Get("token", "");
-            Uri url = new Uri("http://homeworkmpg.ddns.net:12345/api/timetable/"+ token);
+            Uri url = new Uri("http://homeworkmpg.ddns.net:12345/api/timetable/" + token);
             Console.WriteLine(url.ToString());
             var httpRequest = (HttpWebRequest)WebRequest.Create(url);
             var httpResponse = (HttpWebResponse)httpRequest.GetResponse();
